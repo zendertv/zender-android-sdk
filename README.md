@@ -39,6 +39,11 @@ Add the following to your AndroidManifest.xml
 
 Note: sometimes it requires you to reboot the device/emulator
 
+# Sample project
+A sample project is available [within this repo](ZenderDemo)
+
+Be sure to replace the targetId and channelId in the `ZenderDemo/app/src/main/java/tv/zender/zenderdemo/ZenderDemoMainActivity.java`
+
 # Example Use
 ## Initialize ZenderPlayer
 Add the following to your layout (example activity_zender_player)
@@ -67,9 +72,6 @@ String channelId = "cccccccc-cccc-cccc-cccc-cccccccccccc";
 
 
 ZenderPlayerConfig playerConfig = new ZenderPlayerConfig(targetId, channelId);
-
-String playerEndpointPrefix = "https://player2-native.zender.tv";
-playerConfig.overridePlayerEndpointPrefix(playerEndpointPrefix);
 
 zenderPlayerView.setConfig(playerConfig );
 ```
