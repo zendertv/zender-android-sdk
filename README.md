@@ -17,12 +17,27 @@ The Zender android sdk is delivered as a downloadable zip file:
 - Zender is supported from Android >= 4.4
 - It currently depends on the following libraries:
 
+Unzip the sdk zip file and put the aar files inside the libs folder ( app/libs)
+
+Now add this to your app/build.gradle:
+
 ```
- implementation 'com.android.support:appcompat-v7:28.0.0'
- implementation 'com.google.code.gson:gson:2.3.1'
+ implementation fileTree(dir: 'libs', include: ['*.aar'])
+ implementation 'com.google.code.gson:gson:2.8.2'
  implementation 'com.squareup.picasso:picasso:2.5.2'
 ```
-- It requires INTERNET permission
+
+## It requires INTERNET permission
+Add the following to your AndroidManifest.xml
+```
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+```
+
+Note: sometimes it requires you to reboot the device/emulator
 
 # Example Use
 ## Initialize ZenderPlayer
