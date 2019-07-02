@@ -41,7 +41,7 @@ Note: sometimes it requires you to reboot the device/emulator
 
 # Example Use
 ## Initialize ZenderPlayer
-Add the following to your layout
+Add the following to your layout (example activity_zender_player)
 ```
   <tv.zender.player.ZenderPlayerView
       android:id="@+id/zender_view"
@@ -50,10 +50,12 @@ Add the following to your layout
       />
 ```
 
-Now get bind the view to zenderPlayerView
+Now get find the view to zenderPlayerView
 ```
-@BindView(R.id.zender_view)
 ZenderPlayerView zenderPlayerView;
+
+setContentView(R.layout.activity_zender_player);
+zenderPlayerView = findViewById(R.id.zender_view);
 ```
 
 Note: we do not support "Multi-Window" support, be sure to disable that support on this view.
