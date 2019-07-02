@@ -44,14 +44,6 @@ ZenderPlayerView zenderPlayerView;
 Note: we do not support "Multi-Window" support, be sure to disable that support on this view.
 
 ## Configuration ZenderPlayer
-To initialize a ZenderPlayer you need to provide it with:
-- a targetId: this is a unique identifier for your organization
-- a channelId: this is a unique identifier of the channel within your organization (f.i. a specific show)
-
-These values will be provided to you for demo purposes and can be found the in the admin console.
-
-To initialize a channel and have the player autoswitch between public streams
-
 ```
 String targetId = "tttttttt-tttt-tttt-tttt-tttttttttttt";
 String channelId = "cccccccc-cccc-cccc-cccc-cccccccccccc";
@@ -59,7 +51,6 @@ String channelId = "cccccccc-cccc-cccc-cccc-cccccccccccc";
 
 ZenderPlayerConfig playerConfig = new ZenderPlayerConfig(targetId, channelId);
 
-// Temporary override endpong for new styling
 String playerEndpointPrefix = "https://player2-native.zender.tv";
 playerConfig.overridePlayerEndpointPrefix(playerEndpointPrefix);
 
@@ -112,11 +103,15 @@ authPayload.put("token", "<googletoken>")
 ZenderAuthentication authentication = new ZenderAuthentication(authPayload,"google");
 ```
 
+For a more detailed explantion on authentication see <https://github.com/zendertv/zender-docs/blob/master/AUTH.md>
+
 
 ## Setup the video player(s)
 Zender offers the unique ability to dynamically change video players depending on the media Url provided. This allows you to easily add your own video player, switch between the native ,commercial video players and social players like youtube.
 
 The order that you add the players matters: it will use the first player that matches the url/media type. Therefore it is good to add the MediaPlayer as a catch all after all other players. Also MediaPlayer allows you trigger local media bundled inside the app (like an error or placeholder video)
+
+Note: future versions of the sdk wil autodetect the available players
 
 
 Phenix Video Player: (supports urls phenix: <channel-name>)
@@ -246,10 +241,9 @@ this.zenderPlayerView.unregisterZenderPlayerListener(this);
 ```
 
 # Analytics
-The Zender Admin console has an overview of different analytics. We can additionally support Google Analytics out the box. For this the GA trackedId needs to be added to the admin console.
+Zender tracks many metrics. See [Detailed Analytics Documentation](ANALYTICS.md) for further detail.
 
-For further analytics or integration in your own system you can listen to the events exposed by the ZenderPlayerListener.
-
+For further analytics or integration in your own system you can listen to the events exposed by the ZenderPlayerListener and send it to your own tracking system.
 
 # Push notifications
 The Zender Admin console provides a way to send push notifications to users to notifiy them when new streams are available. This requires push notification certificate setup to match the bundleId of your app and allowing us to send the push notifications.
@@ -337,6 +331,7 @@ The zender notification is located in the data part, not in the notification par
     }
 ```
 
+The data format looks like:
 ```
 data:
 {
@@ -348,9 +343,8 @@ data:
 }
 ```
 
-# Debugging
-To inspect the webview , you can set `config.debugEnabled=true`.
-This will allow the webview/chrome view to be inspected from remote.
+# Advanced
+More advanced topics are described at [Advanced Documentation](ADVANCED.md)
 
 # Releases
 We adhere to the Semantic Versions scheme to indiciate releases. Versions starting with 0.x should be considered beta versions and not yet ready for production use.
